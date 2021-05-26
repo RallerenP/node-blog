@@ -1,0 +1,52 @@
+body {
+    margin: 0;
+    padding: 0;
+
+    height: 100vh;
+    width: 100%;
+
+    /*display: flex;*/
+    /*flex-direction: column;*/
+}
+
+:root {
+    --primary-light: #9a67ea;
+    --primary: #673ab7;
+    --primary-dark: #320b86;
+
+    --secondary-light: #ff9100;
+    --secondary: #ffc246;
+    --secondary-dark: #c56200;
+
+    --primary-light-text: #000;
+    --primary-text: #fff;
+    --primary-dark-text: #fff;
+
+    --secondary-light-text: #000;
+    --secondary-text: #000;
+    --secondary-dark-text: #000;
+}
+
+/** Post */
+
+.post-container {
+    flex-grow: 1;
+    flex-basis: 0;
+}
+
+.post-side-component {
+    padding: 10px;
+    position: sticky;
+    top: 0;
+}
+
+.post {
+    margin: 10px 0;
+
+}
+
+.post-components-inner {
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 10px;
+}
