@@ -1,130 +1,83 @@
-<p>posts works!</p>
-<p>posts works!</p>
-<p>posts works!</p>
-<p>posts works!</p>
-<p>posts works!</p>
-<p>posts works!</p>
-<p>posts works!</p>
-<p>posts works!</p>
-<p>posts works!</p>
-<p>posts works!</p>
-<p>posts works!</p>
-<p>posts works!</p>
-<p>posts works!</p>
-<p>posts works!</p>
-<p>posts works!</p>
-<p>posts works!</p>
-<p>posts works!</p>
-<p>posts works!</p>
-<p>posts works!</p>
-<p>posts works!</p>
-<p>posts works!</p>
-<p>posts works!</p>
-<p>posts works!</p>
-<p>posts works!</p>
-<p>posts works!</p>
-<p>posts works!</p>
-<p>posts works!</p>
-<p>posts works!</p>
-<p>posts works!</p>
-<p>posts works!</p>
-<p>posts works!</p>
-<p>posts works!</p>
-<p>posts works!</p>
-<p>posts works!</p>
-<p>posts works!</p>
-<p>posts works!</p>
-<p>posts works!</p>
-<p>posts works!</p>
-<p>posts works!</p>
-<p>posts works!</p>
-<p>posts works!</p>
-<p>posts works!</p>
-<p>posts works!</p>
-<p>posts works!</p>
-<p>posts works!</p>
-<p>posts works!</p>
-<p>posts works!</p>
-<p>posts works!</p>
-<p>posts works!</p>
-<p>posts works!</p>
-<p>posts works!</p>
-<p>posts works!</p>
-<p>posts works!</p>
-<p>posts works!</p>
-<p>posts works!</p>
-<p>posts works!</p>
-<p>posts works!</p>
-<p>posts works!</p>
-<p>posts works!</p>
-<p>posts works!</p>
-<p>posts works!</p>
-<p>posts works!</p>
-<p>posts works!</p>
-<p>posts works!</p>
-<p>posts works!</p>
-<p>posts works!</p>
-<p>posts works!</p>
-<p>posts works!</p>
-<p>posts works!</p>
-<p>posts works!</p>
-<p>posts works!</p>
-<p>posts works!</p>
-<p>posts works!</p>
-<p>posts works!</p>
-<p>posts works!</p>
-<p>posts works!</p>
-<p>posts works!</p>
-<p>posts works!</p>
-<p>posts works!</p>
-<p>posts works!</p>
-<p>posts works!</p>
-<p>posts works!</p>
-<p>posts works!</p>
-<p>posts works!</p>
-<p>posts works!</p>
-<p>posts works!</p>
-<p>posts works!</p>
-<p>posts works!</p>
-<p>posts works!</p>
-<p>posts works!</p>
-<p>posts works!</p>
-<p>posts works!</p>
-<p>posts works!</p>
-<p>posts works!</p>
-<p>posts works!</p>
-<p>posts works!</p>
-<p>posts works!</p>
-<p>posts works!</p>
-<p>posts works!</p>
-<p>posts works!</p>
-<p>posts works!</p>
-<p>posts works!</p>
-<h1 id="super-posts">posts works!</h1>
-<p>posts works!</p>
-<p>posts works!</p>
-<p>posts works!</p>
-<p>posts works!</p>
-<p>posts works!</p>
-<p>posts works!</p>
-<p>posts works!</p>
-<p>posts works!</p>
-<p>posts works!</p>
-<p>posts works!</p>
-<p>posts works!</p>
-<p>posts works!</p>
-<p>posts works!</p>
-<p>posts works!</p>
-<p>posts works!</p>
-<p>posts works!</p>
-<p>posts works!</p>
-<p>posts works!</p>
-<p>posts works!</p>
-<p>posts works!</p>
-<p>posts works!</p>
-<p>posts works!</p>
-<p>posts works!</p>
-<p>posts works!</p>
-<p>posts works!</p>
-<p>posts works!</p>
-<p>posts works!</p>
+<div class="container-fluid post-container">
+    <div class="row h-100">
+        <div class="col post-side-component">
+            <div class="post-components-inner">
+                <h1>Header</h1>
+                <p>Testo</p>
+                <p>Testo</p>
+                <p>Testo</p>
+            </div>
+        </div>
+        <div class="col-7 post" id="post-section">
+
+            <!-- Here goes all posts generated from db -->
+
+
+
+        </div>
+        <div class="col post-side-component h-25">
+            <div class="h-100 post-components-inner"></div>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+<script>
+
+  async function setup() {
+    const response = await fetch('/api/posts', {
+      method: 'GET'
+    });
+
+    const posts = await response.json();
+
+    console.log(posts)
+
+    posts.forEach( post => {
+      generatePost(post);
+    });
+
+  }
+  setup()
+
+  function generatePost(post) {
+    let outerDiv = document.createElement('div')
+    outerDiv.className = 'card'
+    outerDiv.style.width = '80%'
+    outerDiv.style.margin = 'auto'
+
+    let postImage = document.createElement('img')
+    postImage.src = post.imageUrl
+    postImage.className = 'card-img-top'
+    postImage.style.width = '20%'
+
+    let innerDiv = document.createElement('div')
+    innerDiv.className = 'card-body'
+
+    let postTitle = document.createElement('h5')
+    postTitle.className = 'card-title'
+    postTitle.innerText = post.title
+
+    let postDescription = document.createElement('p')
+    postDescription.className = 'card-text'
+    postDescription.innerText = post.description
+
+    let postLink = document.createElement('a')
+    postLink.href = '/posts/' + post._id.toString()
+    postLink.className = 'btn btn-primary'
+    postLink.innerText = 'Read more'
+
+    outerDiv.appendChild(postImage)
+    outerDiv.appendChild(innerDiv)
+    innerDiv.appendChild(postTitle)
+    innerDiv.appendChild(postDescription)
+    innerDiv.appendChild(postLink)
+
+    document.getElementById('post-section').appendChild(outerDiv)
+
+
+
+  }
+
+</script>
