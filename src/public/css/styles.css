@@ -42,11 +42,25 @@ body {
 
 .post {
     margin: 10px 0;
-
 }
 
 .post-components-inner {
     border: 1px solid #ccc;
     border-radius: 10px;
     padding: 10px;
+}
+
+/** Posts */
+
+.posts {
+    margin: 10px 0;
+}
+
+.posts .post {
+    width: 80%;
+    margin: auto;
+}
+
+.posts .post img {
+    width: 20%;
 }

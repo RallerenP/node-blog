@@ -1,20 +1,36 @@
 import express from 'express';
 import dotenv from 'dotenv';
+import User from '../../../entities/user.entity.mjs';
+import * as authService from '../../../services/auth.service.mjs';
 
-dotenv.config()
+dotenv.config();
 
 const router = express.Router();
 
-
 // POST /api/auth/login
-router.post('/login', (req, res) => {
+router.post('/login', async (req, res) => {
+  const user = await authService.login(req.body.email, req.body.password);
 
+  if (user) {
+    // TODO JWT maybe
+    req.session.user = { email: user.email, isAdmin: user.isAdmin };
+    return res.status(201).send();
+  }
+
+  return res.status(401).send();
 });
 
-
 // POST /api/auth/signup
-router.post('/signup', (req, res) =>  {
+router.post('/signup', async (req, res) => {
+  const signup = await authService.signup(req.body.email, req.body.password);
 
+  if (signup === 'USER_EXISTS') {
+    return res.status(409).send();
+  }
+
+  if (signup === 'SUCCESS') {
+    return res.status(201).send();
+  }
 });
 
 export default router;

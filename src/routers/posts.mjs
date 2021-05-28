@@ -14,15 +14,20 @@ const postEditor = render(postEditorBody);
 const router = express.Router();
 
 router.get('/edit', (req, res) => {
-  res.send(postEditor);
+  if (!req.session.user || !req.session.user.isAdmin) {
+    return res.status(401).send();
+  }
+
+  return res.send(postEditor);
 });
 
 router.get('/:id', async (req, res) => {
-  res.send(post);
+  return res.send(post);
 });
 
 router.get('/', (req, res) => {
-  res.send(allPosts);
+  console.log(req.session.user);
+  return res.send(allPosts);
 });
 
 export default router;

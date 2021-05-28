@@ -8,7 +8,7 @@
                 <p>Testo</p>
             </div>
         </div>
-        <div class="col-7 post" id="post-section">
+        <div class="col-7 posts" id="post-section">
 
             <!-- Here goes all posts generated from db -->
 
@@ -20,9 +20,6 @@
         </div>
     </div>
 </div>
-
-<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-
 <script>
 
   async function setup() {
@@ -42,42 +39,17 @@
   setup()
 
   function generatePost(post) {
-    let outerDiv = document.createElement('div')
-    outerDiv.className = 'card'
-    outerDiv.style.width = '80%'
-    outerDiv.style.margin = 'auto'
+    const post_html = `
+        <div class="card post">
+            <img class="card-img-top" src="${post.imageUrl}">
+            <div class="card-body">
+                <h5 class="card-title">${post.title}</h5>
+                <p class="card-text">${post.description}</p>
+                <a class="btn btn-primary" href="/posts/${post._id}">Read More</a>
+            </div>
+        </div>
+    `
 
-    let postImage = document.createElement('img')
-    postImage.src = post.imageUrl
-    postImage.className = 'card-img-top'
-    postImage.style.width = '20%'
-
-    let innerDiv = document.createElement('div')
-    innerDiv.className = 'card-body'
-
-    let postTitle = document.createElement('h5')
-    postTitle.className = 'card-title'
-    postTitle.innerText = post.title
-
-    let postDescription = document.createElement('p')
-    postDescription.className = 'card-text'
-    postDescription.innerText = post.description
-
-    let postLink = document.createElement('a')
-    postLink.href = '/posts/' + post._id.toString()
-    postLink.className = 'btn btn-primary'
-    postLink.innerText = 'Read more'
-
-    outerDiv.appendChild(postImage)
-    outerDiv.appendChild(innerDiv)
-    innerDiv.appendChild(postTitle)
-    innerDiv.appendChild(postDescription)
-    innerDiv.appendChild(postLink)
-
-    document.getElementById('post-section').appendChild(outerDiv)
-
-
-
+    $('#post-section').append(post_html);
   }
-
 </script>
