@@ -10,15 +10,15 @@ router.post('/:id/comments', async (req, res) => {
     return res.status(401).send();
   }
 
-  let date = new Date()
-  date.setHours(date.getHours() + 2)
-  console.log(req.session.user.email)
+  const date = new Date();
+  date.setHours(date.getHours() + 2);
+  console.log(req.session.user.email);
   const comment = new Comment({ author: req.session.user.email, text: req.body.comment, timestamp: date });
   await comment.save();
 
-  const post = await Post.findById(req.params.id)
-  post.comments.push(comment)
-  await post.save()
+  const post = await Post.findById(req.params.id);
+  post.comments.push(comment);
+  await post.save();
 
   res.status(201).send();
 });
@@ -29,11 +29,11 @@ router.post('/', async (req, res) => {
     return res.status(401).send();
   }
   const post = new Post({ ...req.body, sections: [] });
-  req.body.sections.forEach( section => {
-    post.sections.push(section)
-  })
+  req.body.sections.forEach( (section) => {
+    post.sections.push(section);
+  });
 
-  //TODO push req.body.sections to post sections array somehow
+  // TODO push req.body.sections to post sections array somehow
   await post.save();
   res.status(201).send();
 });

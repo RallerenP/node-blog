@@ -2,10 +2,8 @@
     <div class="row h-100">
         <div class="col post-side-component">
             <div class="post-components-inner">
-                <h1>Header</h1>
-                <p>Testo</p>
-                <p>Testo</p>
-                <p>Testo</p>
+                <h1>Available posts</h1>
+                <div id="navigation-links"></div>
             </div>
         </div>
         <div class="col-7 posts" id="post-section">
@@ -22,24 +20,34 @@
 <script>
 
   async function setup() {
-    const response = await fetch('/api/posts', {
+    const loggedInResponse = await fetch('/api/auth/me', {
+      method: 'GET'
+    })
+
+    const loggedIn = await loggedInResponse.json()
+
+    if (loggedIn.isAdmin) {
+      $('#post-section').append(`
+        <a href="/posts/edit"><button class="btn btn-primary">Add new post</button></a>
+      `)
+    }
+
+    const postsResponse = await fetch('/api/posts', {
       method: 'GET'
     });
 
-    const posts = await response.json();
+    const posts = await postsResponse.json();
 
-    console.log(posts)
-
-    posts.forEach( post => {
-      generatePost(post);
+    posts.forEach( (post, index) => {
+      generatePost(post, index);
     });
 
   }
   setup()
 
-  function generatePost(post) {
-    const post_html = `
-        <div class="card post">
+  function generatePost(post, index) {
+    $('#post-section').append(`
+        <div class="card post" id="post-${index}">
             <img class="card-img-top" src="${post.imageUrl}">
             <div class="card-body">
                 <h5 class="card-title">${post.title}</h5>
@@ -47,8 +55,14 @@
                 <a class="btn btn-primary" href="/posts/${post._id}">Read More</a>
             </div>
         </div>
-    `
+    `)
 
-    $('#post-section').append(post_html);
+    $('#navigation-links').append(`
+        <a href="#post-${index}"><p>${post.title}</p></a>
+    `)
+
+
   }
+
+
 </script>
