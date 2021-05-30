@@ -8,7 +8,7 @@ export default mongoose.model(
     timestamp: Date,
     post: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'Post'
-    }
-  })
+      ref: 'Post',
+    },
+  }),
 );

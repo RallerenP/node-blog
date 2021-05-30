@@ -31,8 +31,8 @@
     const loopAmount = $('#sections')[0].children.length
 
     for (i = 0; i < loopAmount; i++) {
-      const sectionTitle = $('#sections')[0].children[i].children[0].children[1].value
-      const sectionBody = $('#sections')[0].children[i].children[1].children[1].value
+      const sectionTitle = $(`section-${i}-header`).val()
+      const sectionBody = $(`section-${i}-body`).val()
       sections.push(
         {
         sectionTitle,
@@ -62,7 +62,7 @@
 
   let sectionIndex = 0
 
-  $('#addSectionButton').click( e => {
+  $('#addSectionButton').click( () => {
      $('#sections').append(`
         <div class="new-section">
             <div class="form-group">
@@ -84,5 +84,4 @@
 
     sectionIndex++
   })
-
 </script>
