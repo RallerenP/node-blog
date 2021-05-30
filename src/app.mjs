@@ -10,6 +10,7 @@ import render from './renderer.mjs';
 import connect from './db.mjs';
 import cookieParser from 'cookie-parser';
 import session from 'express-session';
+import initChat from './chat.js';
 
 dotenv.config();
 
@@ -37,6 +38,7 @@ app.get('/', (req, res) => {
 });
 
 app.listen(port, (e) => {
+  initChat()
   if (e) {
     console.log('Error occured');
   } else {

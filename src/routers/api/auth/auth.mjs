@@ -20,6 +20,12 @@ router.post('/login', async (req, res) => {
   return res.status(401).send();
 });
 
+router.get('/me', async (req, res) => {
+  if (req.session.user) return res.send(req.session.user);
+
+  return res.status(401).send({ error: 'Not Logged In' });
+});
+
 // POST /api/auth/signup
 router.post('/signup', async (req, res) => {
   const signup = await authService.signup(req.body.email, req.body.password);

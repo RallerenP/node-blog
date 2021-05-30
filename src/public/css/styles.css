@@ -36,8 +36,8 @@ body {
 
 .post-side-component {
     padding: 10px;
-    position: sticky;
-    top: 0;
+
+
 }
 
 .post {
@@ -47,6 +47,8 @@ body {
 .post-components-inner {
     border: 1px solid #ccc;
     border-radius: 10px;
+    position: sticky;
+    top: 10px;
     padding: 10px;
 }
 
@@ -63,4 +65,9 @@ body {
 
 .posts .post img {
     width: 20%;
+}
+
+.chatbox {
+    max-height: 500px;
+    overflow: auto;
 }

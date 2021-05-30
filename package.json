@@ -17,7 +17,7 @@
     "express": "^4.17.1",
     "express-session": "^1.17.2",
     "mongoose": "^5.12.11",
-    "socket.io": "^4.1.2"
+    "socket.io": "3.0.5"
   },
   "devDependencies": {
     "cross-env": "^7.0.3",
