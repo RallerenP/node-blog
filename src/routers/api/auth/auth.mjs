@@ -1,6 +1,5 @@
 import express from 'express';
 import dotenv from 'dotenv';
-import User from '../../../entities/user.entity.mjs';
 import * as authService from '../../../services/auth.service.mjs';
 
 dotenv.config();
