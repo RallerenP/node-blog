@@ -1,0 +1,7 @@
+DB_NAME=
+DB_PASSWORD=
+PORT=
+
+DB_NAME should contain the name of the database being used
+DB_PASSWORD should contain the password for the user when connecting to the database
+PORT can be changed dynamically, will default to 8080 if no port is specified
