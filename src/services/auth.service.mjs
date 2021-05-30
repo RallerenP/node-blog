@@ -8,7 +8,6 @@ export async function login(email, password) {
   if (user) { // if match
     // Check credentials match
     if (await check(password, user.password)) {
-      // TODO Log user in
       return user;
     }
   }

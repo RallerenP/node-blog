@@ -40,8 +40,24 @@ body {
 
 }
 
-.post {
+#post {
     margin: 10px 0;
+}
+
+#post #header {
+    text-align: center;
+}
+
+#post #description {
+    text-align: center;
+    color: rgba(0, 0, 0, 0.5);
+    font-size: 1rem;
+}
+
+#post img {
+    display: block;
+    width: 50%;
+    margin: 50px auto;
 }
 
 .post-components-inner {
@@ -50,6 +66,27 @@ body {
     position: sticky;
     top: 10px;
     padding: 10px;
+}
+
+/** Comments */
+
+.comment {
+    background: var(--primary);
+    color: var(--primary-text);
+    border: 1px solid black;
+    border-radius: 10px;
+    margin: 5px 0;
+    padding: 10px;
+    width: 80%;
+}
+
+.comment h4 {
+    font-size: 28px;
+    color: var(--secondary);
+}
+
+.comment h5 {
+    font-size: 16px;
 }
 
 /** Posts */
@@ -66,6 +103,14 @@ body {
 .posts .post img {
     width: 20%;
 }
+
+/** Content */
+
+#content-section .content-group {
+    margin-bottom: 50px;
+}
+
+/** Chat */
 
 .chatbox {
     max-height: 500px;

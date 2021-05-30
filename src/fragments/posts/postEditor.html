@@ -13,13 +13,12 @@
             <label for="imageUrl">ImageUrl</label>
             <input type="text" class="form-control" id="imageUrl">
         </div>
+        <div id="sections"></div>
+        <button id="addSectionButton" class="btn btn-primary">Add New Section</button>
         <button id="submitButton" class="btn btn-primary">Add New Post</button>
 
     </div>
 </div>
-
-<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-
 <script>
 
   $('#submitButton').click(async () => {
@@ -27,11 +26,26 @@
     const title = $('#title').val();
     const description = $('#description').val();
     const imageUrl = $('#imageUrl').val();
+    let sections = []
+
+    const loopAmount = $('#sections')[0].children.length
+
+    for (i = 0; i < loopAmount; i++) {
+      const sectionTitle = $('#sections')[0].children[i].children[0].children[1].value
+      const sectionBody = $('#sections')[0].children[i].children[1].children[1].value
+      sections.push(
+        {
+        sectionTitle,
+        sectionBody
+      }
+      )
+    }
 
     const data = {
       title,
       description,
-      imageUrl
+      imageUrl,
+      sections
     };
 
     await fetch("/api/posts", {
@@ -45,5 +59,30 @@
     location.href = '/'
 
   });
+
+  let sectionIndex = 0
+
+  $('#addSectionButton').click( e => {
+     $('#sections').append(`
+        <div class="new-section">
+            <div class="form-group">
+                <label for="section-${sectionIndex}-header">Section Header</label>
+                <input type="text" class="form-control" id="section-${sectionIndex}-header">
+            </div>
+            <div class="form-group">
+                <label for="section-${sectionIndex}-body">Section Body</label>
+                <input type="text" class="form-control" id="section-${sectionIndex}-body">
+            </div>
+            <button id="delete-${sectionIndex}" class="btn btn-primary">X</button>
+        </div>
+    `)
+
+    $(`#delete-${sectionIndex}`).click((e) => {
+        e.target.previousElementSibling.remove()
+        e.target.remove()
+    })
+
+    sectionIndex++
+  })
 
 </script>
