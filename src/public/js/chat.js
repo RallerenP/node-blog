@@ -1,8 +1,6 @@
-let socket;
+const socketUrl = window.location.hostname;
+const socket = io(`${socketUrl}:8080`, { autoConnect: false });
 
 window.addEventListener('load', () => {
-  const url = window.location.hostname;
-
-  socket = io(`${url}:8080`, { autoConnect: false });
   socket.connect();
 });
