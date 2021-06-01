@@ -6,6 +6,6 @@ You should have .env file in root, with following values:
     DB_USER=
     DB_ADDRESS=
     DB_PASSWORD=
-    PORT=``
+    PORT=
 
 You can also visit our website https://blodenog.rpovlsen.com
