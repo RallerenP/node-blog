@@ -35,7 +35,7 @@
           });
 
           socket.on('disconnect', () => {
-            console.error('Disconnected from socket!!');
+            console.errors('Disconnected from socket!!');
             $('#chatBtn').attr('disabled', true);
             $('#chatBtn').off('click', send);
           });
