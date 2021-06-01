@@ -17,7 +17,8 @@ dotenv.config();
 
 await connect();
 
-const body = fs.readFileSync('src/fragments/home/home.html');
+const body = render(fs.readFileSync('src/fragments/home/home.html'));
+const notFound = render(fs.readFileSync('src/fragments/errors/404.html'))
 
 const app = express();
 
@@ -36,8 +37,13 @@ app.use('/api', apiRouter);
 app.use('/error', errorRouter);
 
 app.get('/', (req, res) => {
-  res.send(render(body));
+  res.send(body);
 });
+
+app.get('*', (req, res) => {
+  console.log(res.locals);
+  res.status(404).send(notFound);
+})
 
 app.listen(port, (e) => {
   initChat()
