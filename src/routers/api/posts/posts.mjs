@@ -7,12 +7,12 @@ const router = express.Router();
 // POST /api/posts/comments - insert post into db
 router.post('/:id/comments', async (req, res) => {
   if (!req.session.user) {
-    return res.status(401).send();
+    return res.redirect('/error/401');
   }
 
   const date = new Date();
   date.setHours(date.getHours() + 2);
-  console.log(req.session.user.email);
+
   const comment = new Comment({ author: req.session.user.email, text: req.body.comment, timestamp: date });
   await comment.save();
 
@@ -26,14 +26,13 @@ router.post('/:id/comments', async (req, res) => {
 // POST /api/posts - insert post into db
 router.post('/', async (req, res) => {
   if (!req.session.user || !req.session.user.isAdmin) {
-    return res.status(401).send();
+    return res.redirect('/error/401');
   }
   const post = new Post({ ...req.body, sections: [] });
   req.body.sections.forEach( (section) => {
     post.sections.push(section);
   });
 
-  // TODO push req.body.sections to post sections array somehow
   await post.save();
   res.status(201).send();
 });
@@ -43,7 +42,7 @@ router.get('/:id', async (req, res) => {
   if (post) {
     return res.json(post);
   }
-  return res.status(404).send();
+  return res.redirect('/error/404');
 });
 
 router.get('/', async (req, res) => {

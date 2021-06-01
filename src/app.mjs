@@ -6,6 +6,7 @@ import postsRouter from './routers/posts.mjs';
 import apiRouter from './routers/api/api.mjs';
 import loginRouter from './routers/login.mjs';
 import signUpRouter from './routers/signUp.mjs';
+import errorRouter from './routers/errors.mjs';
 import render from './renderer.mjs';
 import connect from './db.mjs';
 import cookieParser from 'cookie-parser';
@@ -32,6 +33,7 @@ app.use('/posts', postsRouter);
 app.use('/login', loginRouter);
 app.use('/signup', signUpRouter);
 app.use('/api', apiRouter);
+app.use('/error', errorRouter);
 
 app.get('/', (req, res) => {
   res.send(render(body));

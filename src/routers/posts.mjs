@@ -15,7 +15,7 @@ const router = express.Router();
 
 router.get('/edit', (req, res) => {
   if (!req.session.user || !req.session.user.isAdmin) {
-    return res.status(401).send();
+    return res.redirect('/error/401');
   }
 
   return res.send(postEditor);
@@ -26,7 +26,6 @@ router.get('/:id', async (req, res) => {
 });
 
 router.get('/', (req, res) => {
-  console.log(req.session.user);
   return res.send(allPosts);
 });
 
