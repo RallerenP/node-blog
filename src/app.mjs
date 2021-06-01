@@ -41,7 +41,6 @@ app.get('/', (req, res) => {
 });
 
 app.get('*', (req, res) => {
-  console.log(res.locals);
   res.status(404).send(notFound);
 })
 
