@@ -12,6 +12,9 @@ import connect from './db.mjs';
 import cookieParser from 'cookie-parser';
 import session from 'express-session';
 import initChat from './chat.js';
+import http from 'http';
+
+
 
 dotenv.config();
 
@@ -21,6 +24,8 @@ const body = render(fs.readFileSync('src/fragments/home/home.html'));
 const notFound = render(fs.readFileSync('src/fragments/errors/404.html'))
 
 const app = express();
+
+const serv = http.Server(app)
 
 app.use(express.static('src/public'));
 app.use(cookieParser());
@@ -44,8 +49,8 @@ app.get('*', (req, res) => {
   res.status(404).send(notFound);
 })
 
-app.listen(port, (e) => {
-  initChat()
+serv.listen(port, (e) => {
+  initChat(serv)
   if (e) {
     console.log('Error occured');
   } else {
