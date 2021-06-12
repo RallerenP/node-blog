@@ -1,7 +1,7 @@
 export default function securityHeaders(req, res, next) {
   // If in development, just set 'self' for simplicity,
   // but in production specify origin, to ensure https
-  res.set('Content-Security-Policy', process.env.NODE_ENV === 'production' ? 'default-src https://blodenog.rpovlsen.com:443' : 'default-src \'self\'; img-src https:');
+  res.set('Content-Security-Policy', (process.env.NODE_ENV === 'production' ? 'default-src https://blodenog.rpovlsen.com:443' : 'default-src \'self\';') + 'img-src https:');
   res.set('Strict-Transport-Security', 'Strict-Transport-Security: max-age=31536000; includeSubDomains');
   res.set('X-Frame-Options', 'SAMEORIGIN');
   res.set('X-Content-Type-Options', 'nosniff');
