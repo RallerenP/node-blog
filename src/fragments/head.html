@@ -4,12 +4,12 @@
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="/css/styles.css">
+    <link rel="stylesheet" type="text/css" href="/css/all.css">
     <script src="/js/jquery.slim.min.js"></script>
     <script src="/js/popper.min.js"></script>
     <script src="/js/bootstrap.bundle.min.js"></script>
     <script src="/js/socket.io.js"></script>
     <script src="/js/chat.js"></script>
-    <script src="/js/fontawesome-kit.js"></script>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
@@ -53,27 +53,4 @@
     </div>
 </nav>
 
-<script>
-
-  async function setup() {
-    const loggedInResponse = await fetch('/api/auth/me', {
-      method: 'GET'
-    })
-
-    const loggedIn = await loggedInResponse.json()
-
-    console.log(loggedIn.email)
-
-    if (loggedIn.email) {
-      const selectButtonGroup = $('#auth-buttons');
-      selectButtonGroup[0].children[0].style.display = 'none';
-      selectButtonGroup[0].children[1].style.display = 'none';
-      selectButtonGroup.append(`
-        <a href="/api/auth/logout"><button class="btn btn-danger mr-2">Logout</button></a>
-        <button class="btn btn-secondary mr-2" type="button"> Logged in as ${loggedIn.email} </button>
-      `)
-    }
-  }
-  setup()
-
-</script>
+<script src="/js/fragments/head.js"></script>
