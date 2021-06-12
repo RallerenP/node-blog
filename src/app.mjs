@@ -13,6 +13,7 @@ import cookieParser from 'cookie-parser';
 import session from 'express-session';
 import initChat from './chat.js';
 import http from 'http';
+import securityHeaders from './middlewares/security-headers.mjs';
 
 
 
@@ -30,8 +31,11 @@ const serv = http.Server(app)
 app.use(express.static('src/public'));
 app.use(cookieParser());
 app.use(session({ secret: 'A_SECRET' }));
-app.use(cors());
+app.use(cors({
+  origin: process.env.NODE_ENV === 'production' ? "nodeblog.rpovlsen.com" : '*'
+}));
 app.use(express.json());
+app.use(securityHeaders);
 
 const port = process.env.PORT || 8080;
 
