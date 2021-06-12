@@ -23,14 +23,8 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
       
-      - uses: actions/setup-node@v2.1.5
       - uses: cross-the-world/ssh-pipeline@master
-      
-      - name: Install & run
-        run: |
-          npm i
-          npm run start
-          
+         
       - name: Deploy
         uses: cross-the-world/ssh-pipeline@master
         with:
