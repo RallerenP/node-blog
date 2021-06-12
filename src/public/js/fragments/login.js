@@ -5,9 +5,40 @@ $('#alert').on('close.bs.alert', (e) => {
   $('#alert').toggleClass('show');
 });
 
+function error(err) {
+  $('#alert').text(err);
+  $('#alert').addClass('show');
+}
+
+function emailError(err) {
+  $('#email').addClass('border border-danger');
+  $('#emailErr').text(err);
+  $('#emailErr').removeClass('invisible');
+}
+
+function validateEmail() {
+  const email = $('#email').val();
+
+  console.log(email);
+
+  if (!email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
+    emailError('Invalid email!');
+    return false;
+  } else {
+    $('#email').removeClass('border border-danger');
+    $('#emailErr').addClass('invisible');
+    return true;
+  }
+}
+
 async function login() {
   const email = $('#email').val();
   const password = $('#password').val();
+
+  if (!validateEmail()) {
+    error('Invalid email');
+    return;
+  }
 
   const data = {
     email,
@@ -32,6 +63,9 @@ async function login() {
 }
 
 $('#submitButton').click(login);
+$('#email').on('focusout', validateEmail);
+
 $('.form-group').on('keydown', (e) => {
   if (e.key === 'Enter') login();
-})
+});
+
