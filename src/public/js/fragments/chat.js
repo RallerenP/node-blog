@@ -13,7 +13,6 @@ socket.on('connect', () => {
       });
 
       socket.on('disconnect', () => {
-        console.error('Disconnected from socket!!');
         $('#chatBtn').attr('disabled', true);
         $('#chatBtn').off('click', send);
       });
@@ -40,11 +39,10 @@ socket.on('connect', () => {
   });
 
   function render(message) {
-    const html = `
-        <div class="">
-            <b>${message.username}</b>: "${message.message}"
-        </div>
-      `;
+    const name = $('<b></b>').text(message.username + ': ');
+    const content = $('<span></span>').text(message.message);
+    const html = $('<div class=""></div>').append(name, content);
+
     $('.chatbox').append(html);
   }
 });
