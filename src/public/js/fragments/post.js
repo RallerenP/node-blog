@@ -85,7 +85,6 @@ async function setup() {
   });
 
   const post = await response.json();
-  console.log(post);
   generatePost(post);
 }
 setup();

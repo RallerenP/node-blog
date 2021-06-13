@@ -19,8 +19,6 @@ function emailError(err) {
 function validateEmail() {
   const email = $('#email').val();
 
-  console.log(email);
-
   if (!email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
     emailError('Invalid email!');
     return false;

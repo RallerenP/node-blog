@@ -4,7 +4,6 @@ socket.on('connect', () => {
       return response.json();
     })
     .then((me) => {
-      console.log(me);
       $('#chatBtn').attr('disabled', false);
       $('#chatBtn').on('click', send);
       $('#chatInput').on('keydown', (e) => {

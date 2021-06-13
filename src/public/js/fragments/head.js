@@ -5,8 +5,6 @@ async function setup() {
 
   const loggedIn = await loggedInResponse.json();
 
-  console.log(loggedIn.email);
-
   if (loggedIn.email) {
     const selectButtonGroup = $('#auth-buttons');
     selectButtonGroup[0].children[0].style.display = 'none';

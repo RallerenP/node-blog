@@ -14,7 +14,6 @@ module.exports = (serv) => {
   const io = require('socket.io')(serv);
 
   io.on('connection', (socket) => {
-    console.log(`Connected: ${socket.id}`);
     messages.forEach((message) => {
       socket.emit('CHAT_MESSAGE', message);
     });
