@@ -24,7 +24,7 @@ async function setup() {
 
   if (loggedIn.isAdmin) {
     $('#post-section').append(`
-        <a href="/posts/edit"><button class="btn btn-primary">Add new post</button></a>
+        <a href="/posts/new"><button class="btn btn-primary">Add new post</button></a>
       `);
   }
 

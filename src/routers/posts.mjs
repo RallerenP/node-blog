@@ -13,7 +13,7 @@ const postEditor = render(postEditorBody);
 
 const router = express.Router();
 
-router.get('/edit', (req, res) => {
+router.get('/new', (req, res) => {
   if (!req.session.user || !req.session.user.isAdmin) {
     return res.redirect('/error/401');
   }
