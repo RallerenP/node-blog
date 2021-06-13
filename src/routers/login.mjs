@@ -7,7 +7,6 @@ const loginBody = fs.readFileSync('src/fragments/login/login.html');
 const login = render(loginBody);
 
 const router = express.Router();
-router.use('/api', apiRouter);
 
 // GET /login
 router.get('/', (req, res) => {
