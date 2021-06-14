@@ -7,9 +7,11 @@ const router = express.Router();
 router.post('/login', async (req, res) => {
   const user = await authService.login(req.body.email, req.body.password);
 
+  console.log(user);
+
   if (user) {
     // TODO JWT maybe
-    req.session.user = { email: user.email, isAdmin: user.isAdmin };
+    req.session.user = { email: user.email, isAdmin: user.isAdmin, _id: user._id };
     return res.status(201).send();
   }
 

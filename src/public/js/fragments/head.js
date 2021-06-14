@@ -11,7 +11,7 @@ async function setup() {
     selectButtonGroup[0].children[1].style.display = 'none';
     selectButtonGroup.append(`
         <a href="/api/auth/logout"><button class="btn btn-danger mr-2">Logout</button></a>
-        <button class="btn btn-secondary mr-2" type="button"> Logged in as ${loggedIn.email} </button>
+        <a href="/users" class="btn btn-secondary mr-2" type="button"> Logged in as ${loggedIn.email} </a>
       `);
   }
 }

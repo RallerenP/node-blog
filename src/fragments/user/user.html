@@ -1,0 +1,14 @@
+<div class="container-fluid post-container">
+    <div class="row">
+        <div class="col w-25 post-side-component">
+
+        </div>
+        <div class="col-7 text-center" id="post-section">
+            <h3>{{ $ctx.user.email }}</h3>
+            {{ $ctx.user.isAdmin ? `<p class="font-weight-lighter">Admin</p>` : '' }}
+            <button class="btn btn-danger"><i class="fas fa-trash"></i>Delete User</button>
+
+        </div>
+        {{ $chat }}
+    </div>
+</div>

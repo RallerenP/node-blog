@@ -8,6 +8,7 @@ import loginRouter from './routers/login.mjs';
 import signUpRouter from './routers/signUp.mjs';
 import errorRouter from './routers/errors.mjs';
 import privacyRouter from './routers/privacy.mjs'
+import userRouter from './routers/user.mjs';
 import render from './renderer.mjs';
 import connect from './db.mjs';
 import cookieParser from 'cookie-parser';
@@ -46,6 +47,7 @@ app.use('/signup', signUpRouter);
 app.use('/api', apiRouter);
 app.use('/error', errorRouter);
 app.use('/privacy', privacyRouter)
+app.use('/users', userRouter);
 
 app.get('/', (req, res) => {
   res.send(body);

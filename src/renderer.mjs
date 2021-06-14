@@ -12,7 +12,6 @@ export default function render(body, context) {
   let content = head + body + foot;
 
   const $ctx = { ...defaultContext, ...context };
-  console.log($ctx);
 
   const tags = content.match(/{{.*?}}/g);
 
