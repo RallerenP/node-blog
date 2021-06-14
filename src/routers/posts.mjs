@@ -2,14 +2,16 @@ import express from 'express';
 import fs from 'fs';
 import render from '../renderer.mjs';
 
+const ctx = { activeNav: 'posts' };
+
 const allPostsBody = fs.readFileSync('src/fragments/posts/allPosts.html');
-const allPosts = render(allPostsBody);
+const allPosts = render(allPostsBody, ctx);
 
 const postBody = fs.readFileSync('src/fragments/posts/post.html');
-const post = render(postBody);
+const post = render(postBody, ctx);
 
 const postEditorBody = fs.readFileSync('src/fragments/posts/postEditor.html');
-const postEditor = render(postEditorBody);
+const postEditor = render(postEditorBody, ctx);
 
 const router = express.Router();
 
