@@ -34,5 +34,6 @@ jobs:
           script: |
             cd /root/node-blog &&
             pm2 stop 2 &&
+            git reset --hard origin/master &&
             git pull &&
             pm2 start 2
