@@ -9,7 +9,7 @@ function generatePost(post, index) {
                 <p class="card-text">${post.description}</p>
                 <a class="btn btn-primary" href="/posts/${post._id}">Read More</a>
                 ${
-                  loggedIn.error ? 
+                  loggedIn && loggedIn.isAdmin ? 
                     `<button class="edit btn btn-secondary" data-post-id="${post._id}"><i class="fas fa-edit"></i></button>
                      <button class="delete btn btn-danger" data-post-id="${post._id}"><i class="fas fa-trash"></i></button>
                     `
