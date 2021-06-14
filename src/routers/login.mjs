@@ -1,6 +1,5 @@
 import express from 'express';
 import fs from 'fs';
-import apiRouter from './api/api.mjs';
 import render from '../renderer.mjs';
 
 const loginBody = fs.readFileSync('src/fragments/login/login.html');
@@ -12,6 +11,5 @@ const router = express.Router();
 router.get('/', (req, res) => {
   res.send(login);
 });
-
 
 export default router;

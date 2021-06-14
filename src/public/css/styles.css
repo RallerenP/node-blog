@@ -104,6 +104,10 @@ body {
     width: 20%;
 }
 
+.posts .btn {
+    height: 36px;
+}
+
 /** Content */
 
 #content-section .content-group {

@@ -1,8 +1,5 @@
 import express from 'express';
-import dotenv from 'dotenv';
 import * as authService from '../../../services/auth.service.mjs';
-
-dotenv.config();
 
 const router = express.Router();
 
@@ -19,7 +16,7 @@ router.post('/login', async (req, res) => {
   return res.status(401).send();
 });
 
-router.get('/logout', async (req, res) => {
+router.get('/logout', (req, res) => {
   if (req.session.user) {
     req.session.user = null;
     return res.redirect('/');
@@ -28,7 +25,7 @@ router.get('/logout', async (req, res) => {
   return res.status(401).send({ error: 'Not Logged In' });
 });
 
-router.get('/me', async (req, res) => {
+router.get('/me', (req, res) => {
   if (req.session.user) return res.send(req.session.user);
 
   return res.status(401).send({ error: 'Not Logged In' });
